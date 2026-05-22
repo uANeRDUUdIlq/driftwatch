@@ -9,6 +9,14 @@ import (
 	"github.com/yourorg/driftwatch/internal/alert"
 )
 
+// newEvent returns a minimal DriftEvent suitable for use in tests.
+func newEvent() alert.DriftEvent {
+	return alert.DriftEvent{
+		Resource: "s3://my-bucket",
+		Message:  "unexpected change detected",
+	}
+}
+
 // TestSend_BothTargets verifies that when both webhook and Slack URLs are
 // configured, the notifier posts to each exactly once.
 func TestSend_BothTargets(t *testing.T) {
